@@ -10,7 +10,7 @@ class MultiplierNode(ZOCP):
         self.nodename = nodename
         self.factor = 1.0
         self.input = 0.0
-        self.output = 0.0
+        self.output = None
         self.inverse = False
         super(MultiplierNode, self).__init__()
 
@@ -18,9 +18,8 @@ class MultiplierNode(ZOCP):
     def run(self):
         self.set_name(self.nodename)
         self.register_float("Factor", self.factor, 'rw')
-        self.register_bool("Inverse", 0, 'rw')
-        self.register_float("Input", 0, 'rws')
-        self.register_float("Output", 0, 're')
+        self.register_bool("Inverse", False, 'rw')
+        self.register_float("Value", self.input, 'rwes')
         self.start()
 
         super(MultiplierNode, self).run()
@@ -49,7 +48,7 @@ class MultiplierNode(ZOCP):
         elif key == "Factor":
             if new_value != self.factor:
                 self.factor = new_value
-        elif key == "Input":
+        elif key == "Value":
             if new_value != self.input:
                 self.input = new_value
 
@@ -60,7 +59,7 @@ class MultiplierNode(ZOCP):
 
         if new_output!=self.output:
             self.output = new_output
-            self.emit_signal("Output", self.output)
+            self.emit_signal("Value", self.output)
 
 
 if __name__ == '__main__':
@@ -69,4 +68,5 @@ if __name__ == '__main__':
 
     z = MultiplierNode("multiplier@%s" % socket.gethostname())
     z.run()
+    del z
     print("FINISH")
