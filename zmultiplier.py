@@ -54,7 +54,6 @@ class MultiplierNode(ZOCP):
 
     def receive_value(self, key):
         new_value = self.capability[key]['value']
-        value_key = False
 
         if key == "Inverse":
             if new_value != self.factor:
@@ -92,8 +91,7 @@ class MultiplierNode(ZOCP):
 def int_gt0(value):
     ivalue = int(value)
     if ivalue <= 0:
-        raise argparse.ArgumentTypeError("invalid value: int must be greater than 0: '%s'" %
-                                         value)
+        raise argparse.ArgumentTypeError("int must be greater than 0: '%s'" % value)
     return ivalue
 
 
