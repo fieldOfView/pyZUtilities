@@ -90,7 +90,6 @@ class SwitchInNode(ZOCP):
     def receive_value(self, key):
         new_value = self.capability[key]['value']
 
-        print(key, new_value)
         if key == "Switch":
             if new_value != self.switch:
                 self.switch = int(new_value)
