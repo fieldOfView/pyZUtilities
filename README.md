@@ -52,7 +52,7 @@ usage: zswitchin.py [-h] [{boolean,int,float,vec2f,vec3f,vec4f,string}] [N]
 positional arguments:
   {boolean,int,float,vec2f,vec3f,vec4f,string}
                         the type of ports to use for input and output
-  N                     the number of input-ports to add
+  N                     the number of output-ports to add
 
 optional arguments:
   -h, --help            show this help message and exit
