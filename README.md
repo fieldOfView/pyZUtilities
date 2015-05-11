@@ -8,7 +8,7 @@ zmultiplier
 -----------
 
 Multiplies an input by a factor. Useful when a node outputs a float between 0.0 and 1.0 but another node needs a number between 0 and 255.
-'''
+```
 usage: zmultiplier.py [-h] [-f --factor F] [-i --inverse] [N]
 
 positional arguments:
@@ -18,8 +18,7 @@ optional arguments:
   -h, --help     show this help message and exit
   -f --factor F  initial value of Factor
   -i --inverse   multiply (False) or divide (True) by factor
-'''
-
+```
 
 zcounter
 --------
@@ -31,7 +30,7 @@ zswitchin
 ---------
 
 Virtual switchboard node that allows one of a number of inputs to be connected to a single output.
-'''
+```
 usage: zswitchin.py [-h] [{boolean,int,float,vec2f,vec3f,vec4f,string}] [N]
 
 positional arguments:
@@ -41,13 +40,13 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
-'''
+```
 
 zswitchout
 ----------
 
 Virtual switchboard node that allows a single input to be connected to one of the nodes outputs.
-'''
+```
 usage: zswitchin.py [-h] [{boolean,int,float,vec2f,vec3f,vec4f,string}] [N]
 
 positional arguments:
@@ -57,4 +56,4 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
-'''
+```
