@@ -47,7 +47,7 @@ zswitchout
 
 Virtual switchboard node that allows a single input to be connected to one of the nodes outputs.
 ```
-usage: zswitchin.py [-h] [{boolean,int,float,vec2f,vec3f,vec4f,string}] [N]
+usage: zswitchout.py [-h] [{boolean,int,float,vec2f,vec3f,vec4f,string}] [N]
 
 positional arguments:
   {boolean,int,float,vec2f,vec3f,vec4f,string}
