@@ -8,17 +8,15 @@ import logging
 class MultiplierNode(ZOCP):
     # Constructor
     def __init__(self, ports, factor, inverse, nodename):
-        self.nodename = nodename
+        super(MultiplierNode, self).__init__()
+
         self.factor = factor
         self.ports = ports
         self.input = {}
         self.output = {}
         self.inverse = inverse
-        super(MultiplierNode, self).__init__()
 
-
-    def run(self):
-        self.set_name(self.nodename)
+        self.set_name(nodename)
         self.register_float("Factor", self.factor, 'rws')
         self.register_bool("Inverse", False, 'rw')
 
@@ -35,7 +33,7 @@ class MultiplierNode(ZOCP):
             self.register_float(output_name, self.output[output_name], 're')
 
         self.start()
-        super(MultiplierNode, self).run()
+        self.run()
 
     
     def on_modified(self, peer, name, data, *args, **kwargs):
@@ -110,5 +108,4 @@ if __name__ == '__main__':
 
     z = MultiplierNode(args.ports, args.factor, args.inverse,
                        "multiplier@%s" % socket.gethostname())
-    z.run()
     del z

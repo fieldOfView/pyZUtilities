@@ -8,18 +8,16 @@ import time
 class CounterNode(ZOCP):
     # Constructor
     def __init__(self, nodename=""):
-        self.nodename = nodename
+        super(CounterNode, self).__init__()
+
         self.input = ""
         self.count = 0
         self.count_period = 0
         self.sps = 0
         self.interval = 1.0
         self.loop_time = 0
-        super(CounterNode, self).__init__()
 
-
-    def run(self):
-        self.set_name(self.nodename)
+        self.set_name(nodename)
         self.register_string("Input", "", 's')
         self.register_int("Count", 0, 'r')
         self.register_int("Signals per second", 0, 'r')
@@ -32,6 +30,7 @@ class CounterNode(ZOCP):
                     self.loop_time = time.time() + self.interval
                     self.on_timer()
             except (KeyboardInterrupt, SystemExit):
+                self.stop()
                 break
 
     
@@ -54,7 +53,4 @@ if __name__ == '__main__':
     zl.setLevel(logging.INFO)
 
     z = CounterNode("signalcounter@%s" % socket.gethostname())
-    z.run()
-    z.stop()
-    z = None
-    print("FINISH")
+    del z

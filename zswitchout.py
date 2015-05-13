@@ -8,17 +8,15 @@ import logging
 class SwitchOutNode(ZOCP):
     # Constructor
     def __init__(self, type, ports, nodename = ""):
-        self.nodename = nodename
+        super(SwitchOutNode, self).__init__()
+
         self.ports = ports
         self.type = type
         self.switch = 1
         self.input = None
         self.output = {}
-        super(SwitchOutNode, self).__init__()
 
-
-    def run(self):
-        self.set_name(self.nodename)
+        self.set_name(nodename)
         self.register_int('Switch', self.switch, 'rws', 1, self.ports)
 
         input_name = 'Input'
@@ -30,19 +28,19 @@ class SwitchOutNode(ZOCP):
             self.register_int(input_name, self.input, 'rws')
         elif self.type == 'float':
             self.input = 0.0
-            self.register_bool(input_name, self.input, 'rws')
+            self.register_float(input_name, self.input, 'rws')
         elif self.type == 'vec2f':
             self.input = [0.0, 0.0]
-            self.register_bool(input_name, self.input, 'rws')
+            self.register_vec2f(input_name, self.input, 'rws')
         elif self.type == 'vec3f':
             self.input = [0.0, 0.0, 0.0]
-            self.register_bool(input_name, self.input, 'rws')
+            self.register_vec3f(input_name, self.input, 'rws')
         elif self.type == 'vec4f':
             self.input = [0.0, 0.0, 0.0, 0.0]
-            self.register_bool(input_name, self.input, 'rws')
+            self.register_vec4f(input_name, self.input, 'rws')
         elif self.type == 'string':
             self.input = ''
-            self.register_bool(input_name, self.input, 'rws')
+            self.register_string(input_name, self.input, 'rws')
 
         for port in range(1, self.ports + 1):
             output_name = "Output %s" % port
@@ -55,22 +53,22 @@ class SwitchOutNode(ZOCP):
                 self.register_int(output_name, self.output[output_name], 'rwe')
             elif self.type == 'float':
                 self.output[output_name] = 0.0
-                self.register_bool(output_name, self.output[output_name], 'rwe')
+                self.register_float(output_name, self.output[output_name], 'rwe')
             elif self.type == 'vec2f':
                 self.output[output_name] = [0.0, 0.0]
-                self.register_bool(output_name, self.output[output_name], 'rwe')
+                self.register_vec2f(output_name, self.output[output_name], 'rwe')
             elif self.type == 'vec3f':
                 self.output[output_name] = [0.0, 0.0, 0.0]
-                self.register_bool(output_name, self.output[output_name], 'rwe')
+                self.register_vec3f(output_name, self.output[output_name], 'rwe')
             elif self.type == 'vec4f':
                 self.output[output_name] = [0.0, 0.0, 0.0, 0.0]
-                self.register_bool(output_name, self.output[output_name], 'rwe')
+                self.register_vec4f(output_name, self.output[output_name], 'rwe')
             elif self.type == 'string':
                 self.output[output_name] = ''
-                self.register_bool(output_name, self.output[output_name], 'rwe')
+                self.register_string(output_name, self.output[output_name], 'rwe')
 
         self.start()
-        super(SwitchOutNode, self).run()
+        self.run()
 
     
     def on_modified(self, peer, name, data, *args, **kwargs):
@@ -125,5 +123,4 @@ if __name__ == '__main__':
     zl.setLevel(logging.DEBUG)
 
     z = SwitchOutNode(args.type, args.ports, "switch-out@%s" % socket.gethostname())
-    z.run()
     del z
