@@ -21,25 +21,25 @@ class SwitchInNode(ZOCP):
         output_name = 'Output'
         if self.type == 'boolean':
             self.output = False
-            self.register_bool(output_name, self.output, 'rwe')
+            self.register_bool(output_name, self.output, 're')
         elif self.type == 'int':
             self.output = 0
-            self.register_int(output_name, self.output, 'rwe')
+            self.register_int(output_name, self.output, 're')
         elif self.type == 'float':
             self.output = 0.0
-            self.register_float(output_name, self.output, 'rwe')
+            self.register_float(output_name, self.output, 're')
         elif self.type == 'vec2f':
             self.output = [0.0, 0.0]
-            self.register_vec2f(output_name, self.output, 'rwe')
+            self.register_vec2f(output_name, self.output, 're')
         elif self.type == 'vec3f':
             self.output = [0.0, 0.0, 0.0]
-            self.register_vec3f(output_name, self.output, 'rwe')
+            self.register_vec3f(output_name, self.output, 're')
         elif self.type == 'vec4f':
             self.output = [0.0, 0.0, 0.0, 0.0]
-            self.register_vec4f(output_name, self.output, 'rwe')
+            self.register_vec4f(output_name, self.output, 're')
         elif self.type == 'string':
             self.output = ''
-            self.register_string(output_name, self.output, 'rwe')
+            self.register_string(output_name, self.output, 're')
 
         for port in range(0, self.ports):
             input_name = "Input %s" % port
