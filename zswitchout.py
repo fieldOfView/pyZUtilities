@@ -12,12 +12,12 @@ class SwitchOutNode(ZOCP):
 
         self.ports = ports
         self.type = type
-        self.switch = 1
+        self.switch = 0
         self.input = None
         self.output = {}
 
         self.set_name(nodename)
-        self.register_int('Switch', self.switch, 'rws', 1, self.ports)
+        self.register_int('Switch', self.switch, 'rws', 0, self.ports-1)
 
         input_name = 'Input'
         if self.type == 'boolean':
@@ -42,7 +42,7 @@ class SwitchOutNode(ZOCP):
             self.input = ''
             self.register_string(input_name, self.input, 'rws')
 
-        for port in range(1, self.ports + 1):
+        for port in range(0, self.ports):
             output_name = "Output %s" % port
 
             if self.type == 'boolean':

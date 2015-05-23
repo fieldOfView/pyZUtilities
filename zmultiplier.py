@@ -20,7 +20,7 @@ class MultiplierNode(ZOCP):
         self.register_float("Factor", self.factor, 'rws')
         self.register_bool("Inverse", False, 'rw')
 
-        for port in range(1, self.ports + 1):
+        for port in range(0, self.ports):
             if self.ports == 1:
                 input_name = "Input"
                 output_name = "Output"
