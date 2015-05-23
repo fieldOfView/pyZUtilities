@@ -91,7 +91,7 @@ class SwitchOutNode(ZOCP):
         emit_output = False
         if key == "Switch":
             if new_value != self.switch:
-                self.switch = int(new_value)
+                self.switch = max(min(int(new_value), self.ports-1), 0)
                 emit_output = True
         elif key == "Input":
             if new_value != self.input:

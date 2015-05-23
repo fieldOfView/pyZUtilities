@@ -89,7 +89,7 @@ class SwitchInNode(ZOCP):
 
         if key == "Switch":
             if new_value != self.switch:
-                self.switch = int(new_value)
+                self.switch = max(min(int(new_value), self.ports-1), 0)
                 input_name = "Input %s" % self.switch
                 self.emit_signal("Output", self.input[input_name])
         elif key.startswith("Input"):
