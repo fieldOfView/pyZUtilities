@@ -12,12 +12,12 @@ class SwitchOutNode(ZOCP):
 
         self.ports = ports
         self.type = type
-        self.switch = 0
+        self.index = 0
         self.input = None
         self.output = {}
 
         self.set_name(nodename)
-        self.register_int('Switch', self.switch, 'rws', 0, self.ports-1)
+        self.register_int('Index', self.index, 'rws', 0, self.ports-1)
 
         input_name = 'Input'
         if self.type == 'boolean':
@@ -89,9 +89,9 @@ class SwitchOutNode(ZOCP):
         new_value = self.capability[key]['value']
 
         emit_output = False
-        if key == "Switch":
-            if new_value != self.switch:
-                self.switch = max(min(int(new_value), self.ports-1), 0)
+        if key == "Index":
+            if new_value != self.index:
+                self.index = max(min(int(new_value), self.ports-1), 0)
                 emit_output = True
         elif key == "Input":
             if new_value != self.input:
@@ -99,7 +99,7 @@ class SwitchOutNode(ZOCP):
                 emit_output = True
 
         if emit_output:
-            output_name = "Output %s" % self.switch
+            output_name = "Output %s" % self.index
             self.output[output_name] = self.input
             self.emit_signal(output_name, self.input)
 

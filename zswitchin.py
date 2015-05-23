@@ -11,12 +11,12 @@ class SwitchInNode(ZOCP):
         super(SwitchInNode, self).__init__()
         self.ports = ports
         self.type = type
-        self.switch = 0
+        self.index = 0
         self.input = {}
         self.output = None
 
         self.set_name(nodename)
-        self.register_int('Switch', self.switch, 'rws', 0, self.ports-1)
+        self.register_int('Index', self.index, 'rws', 0, self.ports-1)
 
         output_name = 'Output'
         if self.type == 'boolean':
@@ -87,15 +87,15 @@ class SwitchInNode(ZOCP):
     def receive_value(self, key):
         new_value = self.capability[key]['value']
 
-        if key == "Switch":
-            if new_value != self.switch:
-                self.switch = max(min(int(new_value), self.ports-1), 0)
-                input_name = "Input %s" % self.switch
+        if key == "Index":
+            if new_value != self.index:
+                self.index = max(min(int(new_value), self.ports-1), 0)
+                input_name = "Input %s" % self.index
                 self.emit_signal("Output", self.input[input_name])
         elif key.startswith("Input"):
             if new_value != self.input[key]:
                 self.input[key] = new_value
-                if self.switch == int(key[5:]):
+                if self.index == int(key[5:]):
                     self.output = new_value
                     self.emit_signal("Output", new_value)
 
