@@ -67,7 +67,7 @@ class StringSplitterNode(ZOCP):
                 self.count = new_count
                 self.emit_signal("Count", self.count)
 
-        new_output = self.items[max(min(self.index,len(self.items)-1), 0)]
+        new_output = self.items[max(min(int(self.index),len(self.items)-1), 0)]
         if new_output != self.output:
             self.output = new_output
             self.emit_signal("Output", self.output)
