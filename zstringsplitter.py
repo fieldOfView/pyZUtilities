@@ -13,11 +13,13 @@ class StringSplitterNode(ZOCP):
         self.input = "" 
         self.output = ""
         self.delimiter = ','
-        self.items = []
+        self.items = [""]
+        self.count = len(self.items)
         self.index = 0
 
         self.set_name(nodename)
         self.register_int("Index", self.index, 'rws', min=0)
+        self.register_int("Count", self.count, 're')
         self.register_string("Input", self.input, 'rws')
         self.register_string("Output", self.output, 're')
         self.register_string("Delimiter", self.delimiter, 'rws')
@@ -60,6 +62,10 @@ class StringSplitterNode(ZOCP):
 
         if item_update:
             self.items = self.input.split(self.delimiter)
+            new_count = len(self.items)
+            if new_count != self.count:
+                self.count = new_count
+                self.emit_signal("Count", self.count)
 
         new_output = self.items[max(min(self.index,len(self.items)-1), 0)]
         if new_output != self.output:
