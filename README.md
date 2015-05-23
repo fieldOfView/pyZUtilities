@@ -4,6 +4,12 @@ zutilties
 Some helpful nodes for ZOCP networks, implemented in Python.
 
 
+zcounter
+--------
+
+Counts and displays the number of signals received on its input (which can be anything) for debugging purposes.
+
+
 zmultiplier
 -----------
 
@@ -20,10 +26,11 @@ optional arguments:
   -i --inverse   multiply (False) or divide (True) by factor
 ```
 
-zcounter
---------
 
-Counts and displays the number of signals received on its input (which can be anything) for debugging purposes.
+zstringsplitter
+---------------
+
+Splits an input string by a settable delimiter, and outputs one of the resulting items
 
 
 zswitchin
@@ -42,6 +49,7 @@ optional arguments:
   -h, --help            show this help message and exit
 ```
 
+
 zswitchout
 ----------
 
@@ -57,3 +65,4 @@ positional arguments:
 optional arguments:
   -h, --help            show this help message and exit
 ```
+
