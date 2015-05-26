@@ -7,8 +7,8 @@ import logging
 
 class SwitchOutNode(ZOCP):
     # Constructor
-    def __init__(self, type, ports, nodename = ""):
-        super(SwitchOutNode, self).__init__()
+    def __init__(self, type, ports, nodename):
+        super(SwitchOutNode, self).__init__(nodename)
 
         self.ports = ports
         self.type = type
@@ -16,7 +16,6 @@ class SwitchOutNode(ZOCP):
         self.input = None
         self.output = {}
 
-        self.set_name(nodename)
         self.register_int('Index', self.index, 'rws', 0, self.ports-1)
 
         input_name = 'Input'

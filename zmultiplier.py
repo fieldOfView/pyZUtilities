@@ -8,7 +8,7 @@ import logging
 class MultiplierNode(ZOCP):
     # Constructor
     def __init__(self, ports, factor, inverse, nodename):
-        super(MultiplierNode, self).__init__()
+        super(MultiplierNode, self).__init__(nodename)
 
         self.factor = factor
         self.ports = ports
@@ -16,7 +16,6 @@ class MultiplierNode(ZOCP):
         self.output = {}
         self.inverse = inverse
 
-        self.set_name(nodename)
         self.register_float("Factor", self.factor, 'rws')
         self.register_bool("Inverse", False, 'rw')
 

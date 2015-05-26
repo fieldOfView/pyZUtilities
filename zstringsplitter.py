@@ -8,7 +8,7 @@ import logging
 class StringSplitterNode(ZOCP):
     # Constructor
     def __init__(self, nodename):
-        super(StringSplitterNode, self).__init__()
+        super(StringSplitterNode, self).__init__(nodename)
 
         self.input = "" 
         self.output = ""
@@ -17,7 +17,6 @@ class StringSplitterNode(ZOCP):
         self.count = len(self.items)
         self.index = 0
 
-        self.set_name(nodename)
         self.register_int("Index", self.index, 'rws', min=0)
         self.register_int("Count", self.count, 're')
         self.register_string("Input", self.input, 'rws')

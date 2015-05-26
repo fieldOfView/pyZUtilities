@@ -7,15 +7,14 @@ import logging
 
 class SwitchInNode(ZOCP):
     # Constructor
-    def __init__(self, type, ports, nodename = ""):
-        super(SwitchInNode, self).__init__()
+    def __init__(self, type, ports, nodename):
+        super(SwitchInNode, self).__init__(nodename)
         self.ports = ports
         self.type = type
         self.index = 0
         self.input = {}
         self.output = None
 
-        self.set_name(nodename)
         self.register_int('Index', self.index, 'rws', 0, self.ports-1)
 
         output_name = 'Output'

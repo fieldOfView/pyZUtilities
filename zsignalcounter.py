@@ -7,8 +7,8 @@ import time
 
 class CounterNode(ZOCP):
     # Constructor
-    def __init__(self, nodename=""):
-        super(CounterNode, self).__init__()
+    def __init__(self, nodename):
+        super(CounterNode, self).__init__(nodename)
 
         self.input = ""
         self.count = 0
@@ -17,7 +17,6 @@ class CounterNode(ZOCP):
         self.interval = 1.0
         self.loop_time = 0
 
-        self.set_name(nodename)
         self.register_string("Input", "", 's')
         self.register_int("Count", 0, 'r')
         self.register_int("Signals per second", 0, 'r')
